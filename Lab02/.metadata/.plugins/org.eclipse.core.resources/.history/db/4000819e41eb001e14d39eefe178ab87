@@ -1,0 +1,74 @@
+
+public class Cart {
+	public static final int MAX_NUMBERS_ORDERED = 20;
+	private DigitalVideoDisc itemOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+	
+	static int qtyOrdered;
+	public int CheckList() {
+		qtyOrdered = 0;
+		for (int i = 0; i < MAX_NUMBERS_ORDERED; i++) {
+			if (itemOrdered[i] != null) {
+				qtyOrdered ++;
+			}
+		}
+		return qtyOrdered;
+	}
+	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
+		CheckList();
+		try{
+			if (qtyOrdered > 20) {
+				System.out.println("The cart is full !!!");			
+			}
+			else if (qtyOrdered < 19 && qtyOrdered >= 15) {
+				System.out.printf("The disc %s has been added.\n",disc.getTitle());
+				itemOrdered[qtyOrdered] = disc;
+				System.out.println("The cart is almost full");
+				CheckList();
+				System.out.println("The cart has " + qtyOrdered +" disc");
+			}
+			else if (qtyOrdered == 19) {
+				System.out.printf("The disc %s has been added.\n",disc.getTitle());
+				itemOrdered[qtyOrdered] = disc;
+				System.out.println("The cart is full !!!");	
+			}
+			else {
+				System.out.printf("The disc %s has been added.\n",disc.getTitle());
+				itemOrdered[qtyOrdered] = disc;
+				CheckList();
+				System.out.println("The cart has " + qtyOrdered +" disc.");
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("The cart is full, please remove some disc to add more !!!");
+		}
+	}
+	
+	public void removeDigital(DigitalVideoDisc disc) {
+		CheckList();
+		if (qtyOrdered == 0) {	
+			System.out.println("The cart is empty !!!");
+		}
+		else {
+			for (int i = 0; i < MAX_NUMBERS_ORDERED; i++) {
+				if (itemOrdered[i] == disc) {
+					System.out.printf("The disc %s has been removed.\n",disc.getTitle());
+					itemOrdered[i] = null;
+					CheckList();
+					System.out.println("The cart has " + qtyOrdered +" disc.");
+				}
+				else{
+					System.out.printf("There isn't disc %s in the cart.\n",disc.getTitle());
+				}
+			}
+		}
+	}
+	
+	public void totalCost(){
+		double total = 0;
+		for (int i = 0; i < MAX_NUMBERS_ORDERED; i++) {
+			if (itemOrdered[i] != null) {
+				total += itemOrdered[i].getCost();
+			}
+		}
+		System.out.printf("The toatl cost is: %d",total);
+	}
+}
