@@ -62,5 +62,15 @@ public class Cart {
 		}
 		System.out.printf("The total cost is: %.2f. \n", total);
 	}
-	
+
+	public void displayCart(){
+		for (int i = 0; i < qtyOrdered; i++) {
+			if (itemOrdered[i] != null) {
+				int num = i+1;
+				System.out.printf("%d. The disc %s has the cost: %.2f. \n", num, itemOrdered[i].getTitle(), itemOrdered[i].getCost());
+			}
+		}
+		totalCost();
+	}
+
 }
