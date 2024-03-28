@@ -16,11 +16,7 @@ public class Aims {
 				"Animation", 18.99f);
 		anOrder.addDigitalVideoDisc(dvd3);
 
-		anOrder.displayCart();
-
-		anOrder.removeDigitalVideoDisc(dvd3);
-		
-		anOrder.displayCart();
+		anOrder.totalCost();
 	}
 
 }
