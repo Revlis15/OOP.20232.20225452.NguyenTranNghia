@@ -18,9 +18,6 @@ public class Aims {
 
 		anOrder.displayCart();
 
-		anOrder.removeDigitalVideoDisc(dvd3);
-		
-		anOrder.displayCart();
 	}
 
 }
