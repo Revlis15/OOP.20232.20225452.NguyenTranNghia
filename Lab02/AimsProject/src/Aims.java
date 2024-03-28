@@ -1,4 +1,3 @@
-
 public class Aims {
 
 	public static void main(String[] args) {
@@ -16,7 +15,8 @@ public class Aims {
 				"Animation", 18.99f);
 		anOrder.addDigitalVideoDisc(dvd3);
 
-		anOrder.totalCost();
-	}
+		anOrder.displayCart();
 
+
+	}
 }
