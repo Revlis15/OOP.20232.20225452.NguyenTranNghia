@@ -1,4 +1,3 @@
-
 public class Aims {
 
 	public static void main(String[] args) {
@@ -19,5 +18,4 @@ public class Aims {
 		anOrder.displayCart();
 
 	}
-
 }
