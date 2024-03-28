@@ -78,4 +78,5 @@ public class DigitalVideoDisc {
 		nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
 	}
+	
 }
