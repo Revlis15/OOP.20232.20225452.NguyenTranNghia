@@ -31,44 +31,6 @@ public class Cart {
 			System.out.println("There are currently " + qtyOrdered +" disc.");
 		}
 	}
-
-	public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList){
-		int sum = qtyOrdered + dvdList.length;
-		if (qtyOrdered > MAX_NUMBERS_ORDERED) {
-			System.out.println("The cart is full !!!");			
-		}
-		else if(sum > MAX_NUMBERS_ORDERED) {
-			System.out.println("There aren't enough space in the cart, please remove some disc to add more !!!");		
-			System.out.println("There are currently " + qtyOrdered +" disc");
-		}
-		else {
-			for (int i = 0; i < dvdList.length; i++) {
-				System.out.printf("The disc %s has been added.\n",dvdList[i].getTitle());
-				itemOrdered[qtyOrdered] = dvdList[i];
-				qtyOrdered++;
-				System.out.println("There are currently " + qtyOrdered +" disc.");
-			}
-		}
-	}
-
-	public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2){
-		int sum = qtyOrdered + 2;
-		if (qtyOrdered > MAX_NUMBERS_ORDERED) {
-			System.out.println("The cart is full !!!");			
-		}
-		else if(sum > MAX_NUMBERS_ORDERED) {
-			System.out.println("There aren't enough space in the cart, please remove some disc to add more !!!");		
-			System.out.println("There are currently " + qtyOrdered +" disc");
-		}
-		else {
-			System.out.printf("The disc %s has been added.\n",dvd1.getTitle());
-			itemOrdered[qtyOrdered] = dvd1;
-			System.out.printf("The disc %s has been added.\n",dvd2.getTitle());
-			itemOrdered[qtyOrdered+1] = dvd2;
-			qtyOrdered += 2;
-			System.out.println("There are currently " + qtyOrdered +" disc.");
-		}
-	}
 	
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		if (qtyOrdered == 0) {
@@ -110,5 +72,5 @@ public class Cart {
 		}
 		totalCost();
 	}
-	
+
 }

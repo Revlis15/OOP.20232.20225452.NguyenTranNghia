@@ -4,8 +4,7 @@ public class DigitalVideoDisc {
 	public String directory;
 	public int length;
 	public float cost;
-	private static int nbDigitalVideoDiscs = 0;
-	private int id;
+
 	public String getTitle() {
 		return title;
 	}
@@ -85,5 +84,5 @@ public class DigitalVideoDisc {
 		nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
 	}
-
+	
 }
