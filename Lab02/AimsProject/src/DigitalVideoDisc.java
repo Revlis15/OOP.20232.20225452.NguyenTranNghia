@@ -78,4 +78,37 @@ public class DigitalVideoDisc {
 		nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
 	}
+	@Override
+	public String toString() {
+		return "DVD - " + title + " - " + category + " - " + directory + " - "
+				+ length + ": " + cost + "$";
+	}
+	public boolean isMatch(String title) {
+		String[] words = title.split(" ");
+		for (String word : words) {
+			if (!this.title.contains(word)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	public boolean isMatch(int id) {
+		return this.id == id;
+	}
+	
+	public void search(String title) {
+		if (isMatch( 	title)) {
+			System.out.println("Found a match: " + this.title);
+		} else {
+			System.out.println("No match found! Try again.");
+		}
+	}
+	
+	public void search(int id) {
+		if (isMatch(id)) {
+			System.out.println("Found a match: " + this.title);
+		} else {
+			System.out.println("No match found! Try again.");
+		}
+	}
 }
