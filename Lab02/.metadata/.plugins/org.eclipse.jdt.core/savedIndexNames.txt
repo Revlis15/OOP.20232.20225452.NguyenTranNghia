@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+E:\Anaconda\file\Git\OOP.20232.20225452.NguyenTranNghia\Lab02\.metadata\.plugins\org.eclipse.jdt.core
-2315386619.index
-2906564572.index
-1865797976.index
