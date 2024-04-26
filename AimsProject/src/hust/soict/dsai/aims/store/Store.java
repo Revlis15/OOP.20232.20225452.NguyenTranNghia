@@ -1,61 +1,27 @@
 package hust.soict.dsai.aims.store;
 
-import hust.soict.dsai.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.Media;
+
+import java.util.ArrayList;
 
 public class Store {
-    public static final int MAX_NUMBERS_ORDERED = 20;
-    private DigitalVideoDisc itemInStore[]  = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-    private int numOfItems = 0;
+    private ArrayList<Media> itemsInStore = new ArrayList<>();
 
-    public  int getNumberOfItems() { 
-        return numOfItems;
-    }
-    protected boolean hasSpace(){
-        for (int i=0 ;i <itemInStore.length; i++)   
-            if(itemInStore[i]==null){   
-                return true;
-            }                
-        return false;               
-    }
-    protected int getNextEmptySlot(){
-        int num = 0;
-        for (int i=0 ;i <itemInStore.length; i++)   
-            if(itemInStore[i]==null){   
-                num = i;
-                break;
-            }
-        return num;               
+    public Store(ArrayList<Media> itemsInStore) {
+        this.itemsInStore = itemsInStore;
     }
 
-    public void addItem(DigitalVideoDisc video) {
-        if  (video != null && hasSpace()) {
-            itemInStore[getNextEmptySlot()] = video;
-            numOfItems++;
-            System.out.println("The disc "+video.title+"has been added.");
-            }
-        else if (video != null && !hasSpace()) {
-            System.out.println("No Space in Store");
-        }
-        else{
-            System.out.println("Null Value passed to addItem method.");
-        }
+    public void addMedia(Media media) {
+        this.itemsInStore.add(media);
+        System.out.println("Media "+media+" is successfully added.");
+    }
 
-    }
-    
-    public void removeItem(DigitalVideoDisc disc) {
-        if (disc != null) {
-            for (int i = 0; i < itemInStore.length; i++) {
-                if (itemInStore[i] == disc) {
-                    itemInStore[i] = null;
-                    numOfItems--;
-                    System.out.println("The disc "+disc.title+" has been removed.");
-                    break;
-                }
-            }
-        }
-        else {
-            System.out.println("Null Value passed to removeItem method.");
+    public void removeMedia(Media media) {
+        boolean is_remove = this.itemsInStore.remove(media);
+        if (is_remove) {
+            System.out.println("Media "+media+" is successfully removed.");
+        } else {
+            System.out.println("There aren't any "+media+" in the Store.");
         }
     }
-    
 }
