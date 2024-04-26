@@ -1,7 +1,7 @@
 package hust.soict.dsai.aims.cart;
 
-import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.media.Playable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +11,10 @@ public class Cart {
 
     private static final int MAX_NUMBERS_ORDERED = 20;
     private ArrayList<Media> itemsOrdered = new ArrayList<>();
+
+    public ArrayList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
 
     public float totalCost() {
         float total = 0;
@@ -32,41 +36,41 @@ public class Cart {
 
     public void addMedia(Media media) {
         if (this.qtyOrdered + 1 > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is (almost) full");
+            System.out.println("The cart is (almost) full.");
             return;
         }
         itemsOrdered.add(media);
         this.qtyOrdered++;
-        System.out.println("The media has been added");
+        System.out.println("The media has been added.");
     }
 
     public void addMedia(Media m1, Media m2) {
         if (this.qtyOrdered + 2 > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is (almost) full");
+            System.out.println("The cart is (almost) full.");
             return;
         }
         this.itemsOrdered.add(m1);
         this.itemsOrdered.add(m2);
         this.qtyOrdered += 2;
-        System.out.println("The medias have been added");
+        System.out.println("The medias have been added.");
     }
 
     public void addMedia(Media... medias) {
         if (medias.length + this.qtyOrdered > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is (almost) full");
+            System.out.println("The cart is (almost) full.");
             return;
         }
         this.itemsOrdered.addAll(Arrays.asList(medias));
         this.qtyOrdered += medias.length;
-        System.out.println("The media(s) has(have) been added");
+        System.out.println("The media(s) has(have) been added.");
     }
     public void removeMedia(Media media) {
         boolean isRemove = this.itemsOrdered.remove(media);
         if (isRemove) {
-            System.out.println("The disc has been removed");
+            System.out.println("The disc has been removed.");
             this.qtyOrdered--;
         } else {
-            System.out.println("Cannot find that disc in the cart");
+            System.out.println("Cannot find that disc in the cart.");
         }
     }
 
@@ -88,5 +92,15 @@ public class Cart {
             }
         }
         System.out.println("No match is found.");
+    }
+
+    public void playMedia(String title) {
+        for (Media m : this.itemsOrdered) {
+            if (m.getTitle().equals(title)) {
+                if (Playable.class.isAssignableFrom(m.getClass())) {
+                    ((Playable) m).play();
+                }
+            }
+        }
     }
 }

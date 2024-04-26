@@ -52,6 +52,7 @@ public abstract class Media {
         this.title = title;
         this.category = category;
         this.cost = cost;
+        nbMedias++;
         this.id = nbMedias;
     }
 
