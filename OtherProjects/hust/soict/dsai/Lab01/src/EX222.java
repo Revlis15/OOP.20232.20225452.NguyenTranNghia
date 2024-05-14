@@ -1,3 +1,5 @@
+package soict.dsai.Lab01.src;
+
 
 import javax.swing.JOptionPane;
 public class EX222 {

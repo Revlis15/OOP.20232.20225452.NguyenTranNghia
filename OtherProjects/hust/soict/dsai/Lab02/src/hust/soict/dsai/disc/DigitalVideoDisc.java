@@ -1,4 +1,4 @@
-package hust.soict.dsai.disc;
+package soict.dsai.Lab02.src.hust.soict.dsai.disc;
 
 public class DigitalVideoDisc {
 	public String title;

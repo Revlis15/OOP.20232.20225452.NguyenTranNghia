@@ -1,7 +1,7 @@
-package hust.soict.dsai.aims;
+package soict.dsai.Lab02.src.hust.soict.dsai.aims;
 
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.disc.DigitalVideoDisc;
+import soict.dsai.Lab02.src.hust.soict.dsai.aims.cart.Cart;
+import soict.dsai.Lab02.src.hust.soict.dsai.disc.DigitalVideoDisc;
 
 public class Aims {
 
