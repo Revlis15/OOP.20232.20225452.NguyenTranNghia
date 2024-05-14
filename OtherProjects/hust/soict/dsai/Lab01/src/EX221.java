@@ -1,3 +1,4 @@
+package soict.dsai.Lab01.src;
 
 public class EX221 {
     public static void main(String[] args){
