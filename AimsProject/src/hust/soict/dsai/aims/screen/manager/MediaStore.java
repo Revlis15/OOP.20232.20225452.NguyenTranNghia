@@ -15,6 +15,7 @@ import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 
 public class MediaStore extends JPanel{
+    @SuppressWarnings("unused")
     private Media media;
     public MediaStore(Media media){
         this.media = media;
@@ -43,4 +44,5 @@ public class MediaStore extends JPanel{
 
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
+
 }
