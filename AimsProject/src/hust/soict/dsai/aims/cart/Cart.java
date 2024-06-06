@@ -2,22 +2,22 @@ package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
-
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.Arrays;
 
 public class Cart {
     public int qtyOrdered = 0;
 
     private static final int MAX_NUMBERS_ORDERED = 20;
-    private ArrayList<Media> itemsOrdered = new ArrayList<>();
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
-    public ArrayList<Media> getItemsOrdered() {
+    public ObservableList<Media> getItemsOrdered() {
         return itemsOrdered;
     }
 
-    public float totalCost() {
-        float total = 0;
+    public Float totalCost() {
+        Float total = (float) 0;
         for (Media item : this.itemsOrdered) {
             total += item.getCost();
         }

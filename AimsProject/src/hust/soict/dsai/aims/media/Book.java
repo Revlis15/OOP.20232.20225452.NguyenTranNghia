@@ -15,7 +15,7 @@ public class Book extends Media{
         return id + ". Book - " + title + " - " + category + " - " + null + " - " + null + ": " + cost + "$";
     }
 
-    public Book(String title, String category, float cost, List<String> authors) {
+    public Book(String title, String category, Float cost, List<String> authors) {
         super(title, category, cost);
         this.authors = authors;
     }
