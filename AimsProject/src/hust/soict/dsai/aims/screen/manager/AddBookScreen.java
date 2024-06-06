@@ -3,6 +3,7 @@ package hust.soict.dsai.aims.screen.manager;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 import hust.soict.dsai.aims.store.Store;
 import hust.soict.dsai.aims.media.*;
 
+@SuppressWarnings("serial")
 public class AddBookScreen extends AddItemToStoreScreen{
     public JTextField authorField;
 
@@ -46,7 +48,7 @@ public class AddBookScreen extends AddItemToStoreScreen{
             } else {
                 float cost = Float.parseFloat(costText);
                 String[] list = authorText.split(",");
-                List<String> authors = List.of(list);
+                List<String> authors = Arrays.asList(list);
                 Book book = new Book(title, category, cost, authors);
                 if (store.bookExists(book)) {
                     JOptionPane.showMessageDialog(this, "This book already exists in the store.");
@@ -69,7 +71,7 @@ public class AddBookScreen extends AddItemToStoreScreen{
 
         // Create and add the title field
         JLabel title = new JLabel("Title:");
-		title.setFont(font);
+        title.setFont(font);
         center.add(title);
         titleField = new JTextField();
         titleField.setFont(font);
@@ -101,7 +103,6 @@ public class AddBookScreen extends AddItemToStoreScreen{
         submitButton = new JButton("Submit");
         submitButton.setFont(font);
         center.add(submitButton);
-
 
         return center;
     }

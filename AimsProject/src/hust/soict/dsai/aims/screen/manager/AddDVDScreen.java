@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.media.*;
 
+@SuppressWarnings("serial")
 public class AddDVDScreen extends AddItemToStoreScreen{
 
     public AddDVDScreen(Store store) {

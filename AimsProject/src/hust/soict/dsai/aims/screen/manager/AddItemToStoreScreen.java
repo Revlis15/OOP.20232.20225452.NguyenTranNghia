@@ -22,6 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class AddItemToStoreScreen extends JFrame{
 	@SuppressWarnings("unused")
     private Store store;

@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.store.Store;
 
+@SuppressWarnings("serial")
 public class StoreManagerScreen extends JFrame{
 	private Store store;
 

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 
+@SuppressWarnings("serial")
 public class MediaStore extends JPanel{
     @SuppressWarnings("unused")
     private Media media;

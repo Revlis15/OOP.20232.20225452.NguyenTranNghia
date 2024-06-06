@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import hust.soict.dsai.aims.store.Store;
 import hust.soict.dsai.aims.media.*;
 
+@SuppressWarnings("serial")
 public class AddCDScreen extends AddItemToStoreScreen{
     public JTextField artistField;
     public JTextField trackField;
