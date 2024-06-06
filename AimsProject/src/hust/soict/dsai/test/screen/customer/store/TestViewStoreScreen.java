@@ -1,5 +1,7 @@
 package hust.soict.dsai.test.screen.customer.store;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.screen.customer.controller.ViewStoreController;
@@ -26,18 +28,18 @@ public class TestViewStoreScreen extends Application {
 		primaryStage.show();
     }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
         store = new Store();
         cart = new Cart();
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
-        DigitalVideoDisc dvd4 = new DigitalVideoDisc("Avenger", "Science Fiction", 20.56f);
-        DigitalVideoDisc dvd5 = new DigitalVideoDisc("Avenger 2", "Science Fiction", 21.56f);
-        DigitalVideoDisc dvd6 = new DigitalVideoDisc("Avenger 3", "Science Fiction", 22.56f);
-        DigitalVideoDisc dvd7 = new DigitalVideoDisc("Avenger 4", "Science Fiction", 23.56f);
-        DigitalVideoDisc dvd8 = new DigitalVideoDisc("Spiderman", "Science Fiction", 20.56f);
-        DigitalVideoDisc dvd9 = new DigitalVideoDisc("Spiderman 2", "Science Fiction", 21.56f);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 90, 24.95f);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", "unknown", 110, 18.99f);
+        DigitalVideoDisc dvd4 = new DigitalVideoDisc("Avenger", "Science Fiction", "unknown", 110, 20.56f);
+        DigitalVideoDisc dvd5 = new DigitalVideoDisc("Avenger 2", "Science Fiction", "unknown", 130, 21.56f);
+        DigitalVideoDisc dvd6 = new DigitalVideoDisc("Avenger 3", "Science Fiction", "unknown", 120, 22.56f);
+        DigitalVideoDisc dvd7 = new DigitalVideoDisc("Avenger 4", "Science Fiction", "unknown", 122, 23.56f);
+        DigitalVideoDisc dvd8 = new DigitalVideoDisc("Spiderman", "Science Fiction", "unknown", 115, 20.56f);
+        DigitalVideoDisc dvd9 = new DigitalVideoDisc("Spiderman 2", "Science Fiction", "unknown", 117, 21.56f);
         store.addMedia(dvd1);
         store.addMedia(dvd2);
         store.addMedia(dvd3);

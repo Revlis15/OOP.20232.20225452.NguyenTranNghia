@@ -1,6 +1,9 @@
 package hust.soict.dsai.aims.media;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import hust.soict.dsai.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
     private String artist;
@@ -48,23 +51,22 @@ public class CompactDisc extends Disc implements Playable{
         this.length = tmp;
     }
 
-    public void addTrack(Track track) {
+    public void addTrack(Track track) throws PlayerException {
         if (this.tracks.contains(track)) {
-            System.out.println("The track "+track+" has already in tracks' list.");
-            return;
+            throw new PlayerException("The track " + track + " is already in tracks' list.");
         }
         this.tracks.add(track);
         this.length += track.getLength();
-        System.out.println("The track "+track+" is successfully added.");
+        System.out.println("The track " + track + " is successfully added.");
     }
 
-    public void removeTrack(Track track) {
+    public void removeTrack(Track track) throws PlayerException {
         boolean isRemove = this.tracks.remove(track);
         if (isRemove) {
-            System.out.println("The track "+track+" is successfully removed.");
+            System.out.println("The track " + track + " is successfully removed.");
             this.length -= track.getLength();
         } else {
-            System.out.println("There aren't any "+track+" in tracks' list.");
+            throw new PlayerException("There aren't any " + track + " in tracks' list.");
         }
     }
 
@@ -73,12 +75,28 @@ public class CompactDisc extends Disc implements Playable{
     }
 
     @Override
-    public void play() {
-        System.out.println("Playing "+this.artist+"'s compact disc.");
-        System.out.println("Compact disc length: "+this.length);
-        for (int i = 0; i < this.tracks.size(); i++) {
-            System.out.print((i+1)+". ");
-            this.tracks.get(i).play();
+    public void play() throws PlayerException {
+        if (this.getLength() > 0) {
+        	System.out.println("Playing "+this.artist+"'s compact disc.");
+            System.out.println("Compact disc length: "+this.length);
+            for (int i = 0; i < this.tracks.size(); i++) {
+                System.out.print((i+1)+". ");
+                this.tracks.get(i).play();
+            }
+            Iterator<Track> iter = tracks.iterator();
+            Track nextTrack;
+            while (iter.hasNext()) {
+                nextTrack = (Track) iter.next();
+                try {
+                	nextTrack.play();
+                } catch (PlayerException e) {
+                	throw e;
+                }
+            }
+        } else {
+        	throw new PlayerException("ERROR: CD length is non-negative");
         }
+  
     }
+
 }

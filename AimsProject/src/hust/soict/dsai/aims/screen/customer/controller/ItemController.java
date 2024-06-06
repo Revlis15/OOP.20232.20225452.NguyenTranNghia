@@ -1,6 +1,9 @@
 package hust.soict.dsai.aims.screen.customer.controller;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.event.ActionEvent;
@@ -46,12 +49,14 @@ public class ItemController {
     }
 
     @FXML
-    void btnAddToCartClicked(ActionEvent event) {
+    void btnAddToCartClicked(ActionEvent event) throws LimitExceededException {
         cart.addMedia(media);
     }
 
     @FXML
-    void btnPlayClicked(ActionEvent event) {
-
+    void btnPlayClicked(ActionEvent event) throws PlayerException {
+        if (media != null && media instanceof Playable) {
+            ((Playable) media).play();
+        }
     }
 }
