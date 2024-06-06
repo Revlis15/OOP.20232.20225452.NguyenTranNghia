@@ -1,10 +1,14 @@
 package hust.soict.dsai.aims.cart;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import java.util.Arrays;
+
+import javax.naming.LimitExceededException;
 
 public class Cart {
     public int qtyOrdered = 0;
@@ -34,43 +38,57 @@ public class Cart {
         System.out.println("***************************************************");
     }
 
-    public void addMedia(Media media) {
-        if (this.qtyOrdered + 1 > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is (almost) full.");
-            return;
-        }
-        itemsOrdered.add(media);
-        this.qtyOrdered++;
-        System.out.println("The media has been added.");
+    public void addMedia(Media media) throws LimitExceededException {
+    	if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
+	        itemsOrdered.add(media);
+	        this.qtyOrdered++;
+	        System.out.println("The media has been added.");
+    	}
+    	else {
+    		throw new LimitExceededException("ERROR: The number of media has reached its limit.");
+    	}
     }
 
-    public void addMedia(Media m1, Media m2) {
-        if (this.qtyOrdered + 2 > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is (almost) full.");
-            return;
+    public void addMedia(Media m1, Media m2) throws LimitExceededException {
+        if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
+            if (this.qtyOrdered + 2 > MAX_NUMBERS_ORDERED) {
+            	System.out.println("There is not enough space available");
+            	return;
+            } else {
+            	this.itemsOrdered.add(m1);
+                this.itemsOrdered.add(m2);
+                this.qtyOrdered += 2;
+                System.out.println("The medias have been added.");
+            }
         }
-        this.itemsOrdered.add(m1);
-        this.itemsOrdered.add(m2);
-        this.qtyOrdered += 2;
-        System.out.println("The medias have been added.");
+        else {
+    		throw new LimitExceededException("ERROR: The number of media has reached its limit.");
+    	}
     }
 
-    public void addMedia(Media... medias) {
-        if (medias.length + this.qtyOrdered > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is (almost) full.");
-            return;
-        }
-        this.itemsOrdered.addAll(Arrays.asList(medias));
-        this.qtyOrdered += medias.length;
-        System.out.println("The media(s) has(have) been added.");
+    public void addMedia(Media... medias) throws LimitExceededException {
+    	if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
+	        if (medias.length + this.qtyOrdered > MAX_NUMBERS_ORDERED) {
+	            System.out.println("There is not enough space available");
+	            return;
+	        } else {
+		        this.itemsOrdered.addAll(Arrays.asList(medias));
+		        this.qtyOrdered += medias.length;
+		        System.out.println("The media(s) has(have) been added.");
+		    }
+    	}
+    	else {
+    		throw new LimitExceededException("ERROR: The number of media has reached its limit.");
+    	}
     }
-    public void removeMedia(Media media) {
-        boolean isRemove = this.itemsOrdered.remove(media);
-        if (isRemove) {
-            System.out.println("The disc has been removed.");
+    
+    public void removeMedia(Media media) throws IllegalArgumentException {
+        boolean isRemoved = this.itemsOrdered.remove(media);
+        if (isRemoved) {
+            System.out.println("The media has been removed.");
             this.qtyOrdered--;
         } else {
-            System.out.println("Cannot find that disc in the cart.");
+            throw new IllegalArgumentException("Cannot find the specified media in the cart.");
         }
     }
 
@@ -94,7 +112,7 @@ public class Cart {
         System.out.println("No match is found.");
     }
 
-    public void playMedia(String title) {
+    public void playMedia(String title) throws PlayerException {
         for (Media m : this.itemsOrdered) {
             if (m.getTitle().equals(title)) {
                 if (Playable.class.isAssignableFrom(m.getClass())) {

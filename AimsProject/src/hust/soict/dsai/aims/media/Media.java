@@ -33,7 +33,7 @@ public abstract class Media {
         this.category = category;
     }
 
-    public float getCost() {
+    public Float getCost() {
         return cost;
     }
 
@@ -60,18 +60,29 @@ public abstract class Media {
     }
 
     @Override
-    public boolean equals(Object o) {
-        //Compare with itself
-        if (o == this) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        //Check if o is an instance of Media class
-        if (!(o instanceof Media)) {
+        if (obj == null) {
             return false;
         }
-        //Cast o to Media
-        Media m = (Media) o;
-        //Compare
-        return Objects.equals(this.title, m.getTitle());
+        if (!(obj instanceof Media)) {
+            throw new ClassCastException("The object is not an instance of Media");
+        }
+        Media media = (Media) obj;
+        return Objects.equals(title, media.title) && Objects.equals(cost, media.cost);
+    }
+
+    public int compareTo(Media media) {
+        if (media == null) {
+            throw new NullPointerException("The specified media is null");
+        }
+        int titleComparison = this.title.compareTo(media.title);
+        if (titleComparison != 0) {
+            return titleComparison;
+        } else {
+            return this.cost.compareTo(media.cost);
+        }
     }
 }

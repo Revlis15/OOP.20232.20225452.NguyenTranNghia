@@ -20,21 +20,20 @@ public class Book extends Media{
         this.authors = authors;
     }
 
-    public void addAuthor(String authorName) {
+    public void addAuthor(String authorName) throws IllegalArgumentException {
         if (this.authors.contains(authorName)) {
-            System.out.println("The author "+authorName+" has already in authors' list.");
-            return;
+            throw new IllegalArgumentException("The author " + authorName + " is already in the authors' list.");
         }
         this.authors.add(authorName);
-        System.out.println("The author "+authorName+" is successfully added.");
+        System.out.println("The author " + authorName + " is successfully added.");
     }
 
-    public void removeAuthor(String authorName) {
-        boolean isRemove = this.authors.remove(authorName);
-        if (isRemove) {
-            System.out.println("The author "+authorName+" is successfully removed.");
+    public void removeAuthor(String authorName) throws IllegalArgumentException {
+        boolean isRemoved = this.authors.remove(authorName);
+        if (isRemoved) {
+            System.out.println("The author " + authorName + " is successfully removed.");
         } else {
-            System.out.println("There aren't any "+authorName+" in authors' list.");
+            throw new IllegalArgumentException("Cannot find the author " + authorName + " in the authors' list.");
         }
     }
 }

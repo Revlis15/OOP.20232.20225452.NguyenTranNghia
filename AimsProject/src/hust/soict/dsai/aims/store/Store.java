@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.store;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.*;
 
 import java.util.ArrayList;
@@ -20,21 +21,24 @@ public class Store {
         return null;
     }
 
-    public void addMedia(Media media) {
+    public void addMedia(Media media) throws IllegalArgumentException {
+        if (media.getCost() < 0) {
+            throw new IllegalArgumentException("Cost cannot be negative");
+        }
         this.itemsInStore.add(media);
         System.out.println("Media " + media + " is successfully added.");
     }
 
-    public void removeMedia(Media media) {
-        boolean is_remove = this.itemsInStore.remove(media);
-        if (is_remove) {
+    public void removeMedia(Media media) throws IllegalArgumentException {
+        boolean isRemoved = this.itemsInStore.remove(media);
+        if (isRemoved) {
             System.out.println("Media " + media + " is successfully removed.");
         } else {
-            System.out.println("There aren't any " + media + " in the Store.");
+            throw new IllegalArgumentException("Media " + media + " is not found in the Store.");
         }
     }
 
-    public void playMedia(String title) {
+    public void playMedia(String title) throws PlayerException {
         for (Media m : this.itemsInStore) {
             if (m.getTitle().equals(title)) {
                 if (Playable.class.isAssignableFrom(m.getClass())) {

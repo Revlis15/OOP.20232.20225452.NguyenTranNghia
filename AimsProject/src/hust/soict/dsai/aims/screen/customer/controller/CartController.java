@@ -3,12 +3,15 @@ package hust.soict.dsai.aims.screen.customer.controller;
 import java.io.IOException;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -123,10 +126,38 @@ public class CartController {
         Float totalCost = cart.totalCost();
         costLabel.setText(String.format("%.2f", totalCost));
     }
+    
+    void showFilteredMedia(String filterString) {
+        FilteredList<Media> filteredItems = new FilteredList<>(cart.getItemsOrdered(), p -> true);
+
+        filteredItems.setPredicate(media -> {
+            if (filterString == null || filterString.isEmpty()) {
+                return true;
+            }
+
+            String lowerCaseFilter = filterString.toLowerCase();
+
+            if (radioBtnFilterId.isSelected()) {
+                if (String.valueOf(media.getId()).equals(lowerCaseFilter)) {
+                    return true;
+                }
+            } else if (radioBtnFilterTitle.isSelected()) {
+                if (media.getTitle().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        tblMedia.setItems(filteredItems);
+    }
 
     @FXML
-    void btnPlayPressed(ActionEvent event) {
-
+    void btnPlayPressed(ActionEvent event) throws PlayerException {
+    	Media media = tblMedia.getSelectionModel().getSelectedItem();
+        if (media != null && media instanceof Playable) {
+            ((Playable) media).play();
+        }
     }
 
     @FXML
